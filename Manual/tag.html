@@ -37,15 +37,38 @@ ul.mark-bullet {list-style-type: disc}
 ul.mark-minus {list-style-type: "\2212"}
 ul.toc-numbered-mark {list-style: none}
 html {
-    background-color: lightgrey;
+    background-color: #aa9988;
 }
 
 body {
     max-width: 60em;
-    background-color: white;
+    color: #222222;
+    background-color: #eeddbb;
     margin: 0 auto;
     padding: .5em 1em 1em 1em;
     border: .1em solid grey;
+}
+
+::selection {
+  color: #eeddbb;
+  background-color: #448888;
+}
+
+.example {
+    max-width: 40em;
+    border-radius: 3px;
+    box-sizing: border-box;
+    padding: .1em .5em;
+}
+
+.user-tag {
+    color: #d79921;
+    background: #3c3836;
+}
+
+.user-txt {
+    color: #504945;
+    background: #bdae93;
 }
 
 -->
@@ -138,7 +161,7 @@ Next: <a href="#Tag-items" accesskey="n" rel="next">Tag items</a>, Up: <a href="
 
 <p>If we permanently tag our items with floating point numbers and sort them by their tag number, we&rsquo;ll have a plain text document format that&rsquo;s quick to look up and easy to refer to. For example, let&rsquo;s say we have four items with the tags &lsquo;<samp class="samp">@1.0, @2.0, @3.0, @4.0</samp>&rsquo;:
 </p>
-<div class="example">
+<div class="example user-tag">
 <pre class="example-preformatted">@1.0
 @2.0
 @3.0
@@ -147,7 +170,7 @@ Next: <a href="#Tag-items" accesskey="n" rel="next">Tag items</a>, Up: <a href="
 
 <p>And, we want to insert a new item after &lsquo;<samp class="samp">@1.0</samp>&rsquo; but we don&rsquo;t want to change the tag number of the previous items. What we do here is tag the new item a number between &lsquo;<samp class="samp">@1.0</samp>&rsquo; and &lsquo;<samp class="samp">@2.0</samp>&rsquo; and insert them between those two items. &lsquo;<samp class="samp">@1.1</samp>&rsquo; will suffice here. So, the five sections are &lsquo;<samp class="samp">@1.0, @1.1, @2.0, @3.0, @4.0</samp>&rsquo; where the new &lsquo;<samp class="samp">@1.1</samp>&rsquo; is between &lsquo;<samp class="samp">@1.0</samp>&rsquo; and &lsquo;<samp class="samp">@2.0</samp>&rsquo;:
 </p>
-<div class="example">
+<div class="example user-tag">
 <pre class="example-preformatted">@1.0
 @1.1 &lt;-- the newly inserted item
 @2.0
@@ -170,7 +193,7 @@ Next: <a href="#Tag-numbers" accesskey="n" rel="next">Tag numbers</a>, Previous:
 
 <p>The individual elements in a Tag file that are permanently marked with an unique tag number are called tag items. Tag items start at the beginning of line with an &lsquo;<samp class="samp">@</samp>&rsquo; sign followed by its tag number. They can optionally have title, reference list, flag list, and path to its associated file. Example of a tag item:
 </p>
-<div class="example">
+<div class="example user-tag">
 <pre class="example-preformatted">@1.5 Butterflies _ @1.2 ^ incomplete &lt; butterflies.txt
 </pre></div>
 
@@ -228,7 +251,7 @@ Next: <a href="#References" accesskey="n" rel="next">References</a>, Previous: <
 
 <p>An item in Tag can be given a title. Example of items with titles:
 </p>
-<div class="example">
+<div class="example user-tag">
 <pre class="example-preformatted">@1.0 Title
 @2.0 Longer Title
 @2.5 A Really Long Title
@@ -245,17 +268,17 @@ Next: <a href="#Flags" accesskey="n" rel="next">Flags</a>, Previous: <a href="#T
 </div>
 <h3 class="section" id="References-1"><span>1.5 References<a class="copiable-link" href="#References-1"> &para;</a></span></h3>
 
-<p>References let us make connections between two items. Reference list comes after the title of a tag element and the underscore symbol <code class="code">_</code>. For example:
+<p>References let us make connections between two items. Reference list comes after the title of a tag element and the underscore symbol &lsquo;<samp class="samp">_</samp>&rsquo;. For example:
 </p>
-<div class="example">
+<div class="example user-tag">
 <pre class="example-preformatted">@1.0 Origin of Butterflies &lt; butterflies.origins.txt
 @2.0 Butterflies in Jurrassic Period? _ @1.0 &lt; butterflies.jurassic.txt
 </pre></div>
 
 <p><samp class="file">butterflies.origins.txt</samp>:
 </p>
-<div class="example">
-<pre class="example-preformatted">::SOURCE: [[https://pmc.ncbi.nlm.nih.gov/articles/PMC10250192/]]
+<div class="example user-txt">
+<pre class="example-preformatted">:SOURCE: [[https://pmc.ncbi.nlm.nih.gov/articles/PMC10250192/]]
 Butterflies are flying insects from the Lepidoptera
 superfamily. Moleculars evidences suggests that
 butterflies may have originated in the Cretaceous period.
@@ -263,7 +286,7 @@ butterflies may have originated in the Cretaceous period.
 
 <p><samp class="file">butterflies.jurassic.txt</samp>:
 </p>
-<div class="example">
+<div class="example user-txt">
 <pre class="example-preformatted">Butterflies likely originated from the Cretaceous
 period, which was 145 to 66 million years ago.
 Jurassic period was 201 and 145 million years ago.
@@ -294,15 +317,15 @@ Next: <a href="#Working-with-files" accesskey="n" rel="next">Working with files<
 </div>
 <h3 class="section" id="Flags-1"><span>1.6 Flags<a class="copiable-link" href="#Flags-1"> &para;</a></span></h3>
 
-<p>Flags are words or labels used to convey the quality or features of a Tag item. For example, an item can have the &lsquo;<samp class="samp">ARCHIVED</samp>&rsquo; flag indicating it is now archived (and will be ignored by the compiler). Flag lists starts after the reference list followed by the <code class="code">^</code> symbol. If the reference list is absent, flag list can start right after the title or tag number. Flags are case sensitive. Here&rsquo;s an example of flag used to convey that an item&rsquo;s content is still incomplete:
+<p>Flags are words or labels used to convey the quality or features of a Tag item. For example, an item can have the &lsquo;<samp class="samp">ARCHIVED</samp>&rsquo; flag indicating it is now archived (and will be ignored by the compiler). Flag lists starts after the reference list followed by the &lsquo;<samp class="samp">^</samp>&rsquo; symbol. If the reference list is absent, flag list can start right after the title or tag number. Flags are case sensitive. Here&rsquo;s an example of flag used to convey that an item&rsquo;s content is still incomplete:
 </p>
-<div class="example">
+<div class="example user-tag">
 <pre class="example-preformatted">@3.75 Faith and Humanity _ @2.59 ^ incomplete
 </pre></div>
 
 <p>Todo flags can be used to turn an item into a todo item. &lsquo;<samp class="samp">TODO</samp>&rsquo; and &lsquo;<samp class="samp">DONE</samp>&rsquo; are the two basic todo states but more can be used and configured. Examples of items with todo flags:
 </p>
-<div class="example">
+<div class="example user-tag">
 <pre class="example-preformatted">@td.01 Finish section: attributes ^ TODO
 @td.02 Write about biggest overcomes ^ DONE
 @td.31 Share Tag with others ^ TODO IMPORTANT
@@ -310,7 +333,7 @@ Next: <a href="#Working-with-files" accesskey="n" rel="next">Working with files<
 
 <p>Some flags have parameter. For example, &quot;MOVED-TO&quot; flag will need an argument tag number to indicate its new location. Example of a flag with argument that indicates the new location of the item:
 </p>
-<div class="example">
+<div class="example user-tag">
 <pre class="example-preformatted">@1.75 ^ MOVED-TO=@5.0
 @5.0 Ingenuity
 </pre></div>
@@ -326,20 +349,20 @@ Next: <a href="#Metadata" accesskey="n" rel="next">Metadata</a>, Previous: <a hr
 
 <p>A tag item can be given a path to a file as its source or destination. We&rsquo;ll need to preceed the path by &lsquo;<samp class="samp">&lt;</samp>&rsquo; symbol if it&rsquo;s source and &lsquo;<samp class="samp">&gt;</samp>&rsquo; symbol if it&rsquo;s destination. A source file means it&rsquo;s the file that contains the containts of our tag item. For example a tag item can have the source <samp class="file">contents.txt</samp> to indicate there&rsquo;s a file with that name and the contents of our item resides there:
 </p>
-<div class="example">
+<div class="example user-tag">
 <pre class="example-preformatted">@1.0 I Have Contents! &lt; contents.txt
 </pre></div>
 
 <p><samp class="file">contents.txt</samp>:
 </p>
-<div class="example">
+<div class="example user-txt">
 <pre class="example-preformatted">I am the contents of @1.0. Please think of me
 as lines under that item.
 </pre></div>
 
 <p>By having source files associated with tag items and making connection between those tag items we have a system where we are essentially making connection between files! Anyway, we can also have source files that indicates where our generated contents will go to. For example we can concatenate contents of two items and put the concatenated content into another file:
 </p>
-<div class="example">
+<div class="example user-tag">
 <pre class="example-preformatted">@1.0 &lt; first.txt
 @2.0 &lt; second.txt
 @3.0 _ @1.0 @2.0 ^ CONCAT &gt; merged.txt
@@ -347,19 +370,19 @@ as lines under that item.
 
 <p><samp class="file">first.txt</samp>:
 </p>
-<div class="example">
+<div class="example user-txt">
 <pre class="example-preformatted">This is the first file.
 </pre></div>
 
 <p><samp class="file">second.txt</samp>:
 </p>
-<div class="example">
+<div class="example user-txt">
 <pre class="example-preformatted">This is the second file.
 </pre></div>
 
 <p>Concatenated <samp class="file">merged.txt</samp>:
 </p>
-<div class="example">
+<div class="example user-txt">
 <pre class="example-preformatted">This is the first file.
 This is the second file.
 </pre></div>
@@ -373,22 +396,22 @@ Previous: <a href="#Working-with-files" accesskey="p" rel="prev">Working with fi
 </div>
 <h3 class="section" id="Metadata-1"><span>1.8 Metadata<a class="copiable-link" href="#Metadata-1"> &para;</a></span></h3>
 
-<p>Metadata are data about data. Metadata are useful when you need to provide information regarding certain item and how it should be processed. In Tag, metadata are used to tell the compiler how to process a tag item and provide context for the human readers. Metadata can resides in either the same line as the tag item or below them and uses &lsquo;<samp class="samp">::KEY:VALUE</samp>&rsquo; format. For example use, here&rsquo;s metadata used to indicate creation time of an item:
+<p>Metadata are data about data. Metadata are useful when you need to provide information regarding certain item and how it should be processed. In Tag, metadata are used to tell the compiler how to process a tag item and provide context for the human readers. Metadata can reside in either the same line as the tag item or below them and uses &lsquo;<samp class="samp">:KEY:VALUE</samp>&rsquo; format. For example use, here&rsquo;s metadata used to indicate creation time of an item:
 </p>
-<div class="example">
+<div class="example user-tag">
 <pre class="example-preformatted">@1.1 An Item :BIRTH: [2025-04-21T02:18:17+06:00]
 </pre></div>
 
 <p>Metadata can be used to schedule a task. For example:
 </p>
-<div class="example">
+<div class="example user-tag">
 <pre class="example-preformatted">@9.47 Watch Le Trou (1960) ^ TODO
 :SCHEDULED: &lt;2025-06-01T18:00/PT2H20M&gt;
 </pre></div>
 
 <p>Metadata entries that are situated at the beginning of the document and not part of any item are document metadata. They can tell the compiler how to process the whole document and also the viewer information about the whole documents. For example, metadata used to provide descriptive information:
 </p>
-<div class="example">
+<div class="example user-tag">
 <pre class="example-preformatted">:TITLE: Metadata is amazing!
 :AUTHOR: One who loves metadata
 @1.0 What is metadata

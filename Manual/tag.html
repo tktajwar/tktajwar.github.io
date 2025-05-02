@@ -119,7 +119,6 @@ Texts.  A copy of the license is included in the section entitled
     <li><a id="toc-References" href="#References">1.5 References</a></li>
     <li><a id="toc-Flags" href="#Flags">1.6 Flags</a></li>
     <li><a id="toc-Working-with-files" href="#Working-with-files">1.7 Working with files</a></li>
-    <li><a id="toc-Metadata" href="#Metadata">1.8 Metadata</a></li>
   </ul></li>
   <li><a id="toc-GNU-Free-Documentation-License" href="#GNU-Free-Documentation-License">Appendix A GNU Free Documentation License</a></li>
 </ul>
@@ -137,7 +136,7 @@ Next: <a href="#GNU-Free-Documentation-License" accesskey="n" rel="next">GNU Fre
 </p>
 <p>Tag files contain Tag items sorted by their alphanumeric Tag numbers (ID). This makes looking up and referencing items a lot easier than in other document formats.
 </p>
-<p>Tag is designed to be used for personal note taking, academic writing, todo listing, literate programming, and software automation. But, Tag can be used for any place where you need to draw connection between items in a simple plain text format.
+<p>Tag is designed to be used for organizing your note files, keeping track of your todo lists, simplyfying literate programming, and creating software automation. But, Tag can be used for any place where you need to draw connection between multiple items in a simple plain text format.
 </p>
 <p>Tag is largely inspired by Niklas Luhmann&rsquo;s Zettelkasten method.
 </p>
@@ -149,7 +148,6 @@ Next: <a href="#GNU-Free-Documentation-License" accesskey="n" rel="next">GNU Fre
 <li><a href="#References" accesskey="5">References</a></li>
 <li><a href="#Flags" accesskey="6">Flags</a></li>
 <li><a href="#Working-with-files" accesskey="7">Working with files</a></li>
-<li><a href="#Metadata" accesskey="8">Metadata</a></li>
 </ul>
 <hr>
 <div class="section-level-extent" id="How-Tag-Numbering-works">
@@ -343,7 +341,7 @@ Next: <a href="#Working-with-files" accesskey="n" rel="next">Working with files<
 <div class="section-level-extent" id="Working-with-files">
 <div class="nav-panel">
 <p>
-Next: <a href="#Metadata" accesskey="n" rel="next">Metadata</a>, Previous: <a href="#Flags" accesskey="p" rel="prev">Flags</a>, Up: <a href="#Introduction" accesskey="u" rel="up">Introduction</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Previous: <a href="#Flags" accesskey="p" rel="prev">Flags</a>, Up: <a href="#Introduction" accesskey="u" rel="up">Introduction</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <h3 class="section" id="Working-with-files-1"><span>1.7 Working with files<a class="copiable-link" href="#Working-with-files-1"> &para;</a></span></h3>
 
@@ -387,39 +385,6 @@ as lines under that item.
 This is the second file.
 </pre></div>
 
-<hr>
-</div>
-<div class="section-level-extent" id="Metadata">
-<div class="nav-panel">
-<p>
-Previous: <a href="#Working-with-files" accesskey="p" rel="prev">Working with files</a>, Up: <a href="#Introduction" accesskey="u" rel="up">Introduction</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
-</div>
-<h3 class="section" id="Metadata-1"><span>1.8 Metadata<a class="copiable-link" href="#Metadata-1"> &para;</a></span></h3>
-
-<p>Metadata are data about data. Metadata are useful when you need to provide information regarding certain item and how it should be processed. In Tag, metadata are used to tell the compiler how to process a tag item and provide context for the human readers. Metadata can reside in either the same line as the tag item or below them and uses &lsquo;<samp class="samp">:KEY:VALUE</samp>&rsquo; format. For example use, here&rsquo;s metadata used to indicate creation time of an item:
-</p>
-<div class="example user-tag">
-<pre class="example-preformatted">@1.1 An Item :BIRTH: [2025-04-21T02:18:17+06:00]
-</pre></div>
-
-<p>Metadata can be used to schedule a task. For example:
-</p>
-<div class="example user-tag">
-<pre class="example-preformatted">@9.47 Watch Le Trou (1960) ^ TODO
-:SCHEDULED: &lt;2025-06-01T18:00/PT2H20M&gt;
-</pre></div>
-
-<p>Metadata entries that are situated at the beginning of the document and not part of any item are document metadata. They can tell the compiler how to process the whole document and also the viewer information about the whole documents. For example, metadata used to provide descriptive information:
-</p>
-<div class="example user-tag">
-<pre class="example-preformatted">:TITLE: Metadata is amazing!
-:AUTHOR: One who loves metadata
-@1.0 What is metadata
-@2.0 Why we need metadata ^ @1.0
-</pre></div>
-
-<p>Feel free to make your own metadata for clarity and extension. A metadata key that is foreign to the compiler will be ignored.
-</p>
 <hr>
 </div>
 </div>

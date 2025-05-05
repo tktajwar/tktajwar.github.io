@@ -3,7 +3,7 @@
 <!-- Created by GNU Texinfo 7.2, https://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<!-- This manual is for Tag version 0.2.
+<!-- This manual is for Tag version 0.3.
 
 Copyright © 2025 Sayed Takey Tajwar Arko.
 
@@ -31,6 +31,7 @@ a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
 div.center {text-align:center}
 div.display {margin-left: 3.2em}
 div.example {margin-left: 3.2em}
+kbd.kbd {font-style: oblique}
 pre.display-preformatted {font-family: inherit}
 span:hover a.copiable-link {visibility: visible}
 ul.mark-bullet {list-style-type: disc}
@@ -94,7 +95,7 @@ Next: <a href="#Introduction" accesskey="n" rel="next">Introduction</a> &nbsp; [
 </div>
 <h1 class="top" id="The-Tag-Manual"><span>The Tag Manual<a class="copiable-link" href="#The-Tag-Manual"> &para;</a></span></h1>
 
-<p>This manual is for Tag version 0.2.
+<p>This manual is for Tag version 0.3.
 </p>
 <p>Copyright &copy; 2025 Sayed Takey Tajwar Arko.
 </p>
@@ -116,13 +117,17 @@ Texts.  A copy of the license is included in the section entitled
 <ul class="toc-numbered-mark">
   <li><a id="toc-Introduction" href="#Introduction">1 Introduction</a>
   <ul class="toc-numbered-mark">
-    <li><a id="toc-How-Tag-Numbering-works" href="#How-Tag-Numbering-works">1.1 How Tag Numbering works</a></li>
-    <li><a id="toc-Tag-items" href="#Tag-items">1.2 Tag items</a></li>
-    <li><a id="toc-Tag-numbers" href="#Tag-numbers">1.3 Tag numbers</a></li>
-    <li><a id="toc-Title" href="#Title">1.4 Title</a></li>
-    <li><a id="toc-References" href="#References">1.5 References</a></li>
-    <li><a id="toc-Flags" href="#Flags">1.6 Flags</a></li>
-    <li><a id="toc-Working-with-files" href="#Working-with-files">1.7 Working with files</a></li>
+    <li><a id="toc-Structure-of-Tag-files" href="#Structure-of-Tag-files">1.1 Structure of Tag files</a></li>
+    <li><a id="toc-How-Tag-Numbering-works" href="#How-Tag-Numbering-works">1.2 How Tag Numbering works</a></li>
+    <li><a id="toc-Valid-Tag-numbers" href="#Valid-Tag-numbers">1.3 Valid Tag numbers</a></li>
+  </ul></li>
+  <li><a id="toc-Tag-Items" href="#Tag-Items">2 Tag Items</a>
+  <ul class="toc-numbered-mark">
+    <li><a id="toc-Item-Title" href="#Item-Title">2.1 Item Title</a></li>
+    <li><a id="toc-Item-Flags" href="#Item-Flags">2.2 Item Flags</a></li>
+    <li><a id="toc-Item-Properties" href="#Item-Properties">2.3 Item Properties</a></li>
+    <li><a id="toc-Linking-files-to-Items" href="#Linking-files-to-Items">2.4 Linking files to Items</a></li>
+    <li><a id="toc-Cross_002dreferencing-Items" href="#Cross_002dreferencing-Items">2.5 Cross-referencing Items</a></li>
   </ul></li>
   <li><a id="toc-GNU-Free-Documentation-License" href="#GNU-Free-Documentation-License">Appendix A GNU Free Documentation License</a></li>
 </ul>
@@ -132,36 +137,48 @@ Texts.  A copy of the license is included in the section entitled
 <div class="chapter-level-extent" id="Introduction">
 <div class="nav-panel">
 <p>
-Next: <a href="#GNU-Free-Documentation-License" accesskey="n" rel="next">GNU Free Documentation License</a>, Previous: <a href="#Top" accesskey="p" rel="prev">The Tag Manual</a>, Up: <a href="#Top" accesskey="u" rel="up">The Tag Manual</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Next: <a href="#Tag-Items" accesskey="n" rel="next">Tag Items</a>, Previous: <a href="#Top" accesskey="p" rel="prev">The Tag Manual</a>, Up: <a href="#Top" accesskey="u" rel="up">The Tag Manual</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <h2 class="chapter" id="Introduction-1"><span>1 Introduction<a class="copiable-link" href="#Introduction-1"> &para;</a></span></h2>
 
-<p>Tag is an editor-independent plain text file indexing format that is used to establish connections between multiple files and items. This is done so by referencing one Tag item inside another in a Tag file. Tag files end with the &lsquo;<samp class="samp">.tag</samp>&rsquo; extension.
+<p>Tag is an editor-independent plain text file indexing format that is used to establish connections between multiple files and items. This is done so by referencing one Tag item inside another in a Tag file. Tag files end with the <samp class="file">.tag</samp> extension.
 </p>
-<p>Tag files contain Tag items sorted by their alphanumeric Tag numbers (ID). This makes looking up and referencing items a lot easier than in other document formats.
-</p>
-<p>Tag is designed to be used for organizing your note files, keeping track of your todo lists, simplyfying literate programming, and creating software automation. But, Tag can be used for any place where you need to draw connection between multiple items in a simple plain text format.
-</p>
-<p>Tag is largely inspired by Niklas Luhmann&rsquo;s Zettelkasten method.
+<p>Tag is largely inspired by late German sociologist Niklas Luhmann&rsquo;s <i class="i">Zettelkasten</i> method.
 </p>
 <ul class="mini-toc">
-<li><a href="#How-Tag-Numbering-works" accesskey="1">How Tag Numbering works</a></li>
-<li><a href="#Tag-items" accesskey="2">Tag items</a></li>
-<li><a href="#Tag-numbers" accesskey="3">Tag numbers</a></li>
-<li><a href="#Title" accesskey="4">Title</a></li>
-<li><a href="#References" accesskey="5">References</a></li>
-<li><a href="#Flags" accesskey="6">Flags</a></li>
-<li><a href="#Working-with-files" accesskey="7">Working with files</a></li>
+<li><a href="#Structure-of-Tag-files" accesskey="1">Structure of Tag files</a></li>
+<li><a href="#How-Tag-Numbering-works" accesskey="2">How Tag Numbering works</a></li>
+<li><a href="#Valid-Tag-numbers" accesskey="3">Valid Tag numbers</a></li>
 </ul>
 <hr>
+<div class="section-level-extent" id="Structure-of-Tag-files">
+<div class="nav-panel">
+<p>
+Next: <a href="#How-Tag-Numbering-works" accesskey="n" rel="next">How Tag Numbering works</a>, Up: <a href="#Introduction" accesskey="u" rel="up">Introduction</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<h3 class="section" id="Structure-of-Tag-files-1"><span>1.1 Structure of Tag files<a class="copiable-link" href="#Structure-of-Tag-files-1"> &para;</a></span></h3>
+
+<p>Tag is an indexing format. This means Tag stores the list of all the files and items of your interest along with their titles, relationships, and what to make of them. Imagine the file system your computer is your kitchen cabinet. The files on your computer are foods and ingredients disorderly placed on the cabinet. Then tag is a personal reference book where you keep track of all the items on your cabinet by giving them an unique identifier along with where they are located on the cabinet, what you can do with them, and how one is related to another. By keeping a list of all your items in such manner defines the structure of your project/directory and streamlines your workflow. Here&rsquo;s an example Tag file:
+</p>
+<div class="example user-tag">
+<pre class="example-preformatted">@1.8 | Platypus  | #animals #land  | :src: platypus.txt
+@1.9 | Octopus   | #animals #ocean | :src: octopus.txt
+@2.9 | Creatures | #animals | :ref: @1.8 @1.9 | :src: crit.txt
+@3.3 | Tentacles | #animals | :ref: @1.8 | :src: tentacles.txt
+</pre></div>
+
+<p>Here, each items are separate by new lines. All the items are sorted by their unique identifier, tag number. This is important as it makes item search much easier. The components of each items are separated by the pipe (<kbd class="kbd">|</kbd>) symbol. The first component of any item has to be its identifier i.e. the tag number. Tag number is the only mandatory component of any Tag item. The component followed by the tag number in the example is the title of the item. Like every other component other than the tag number, it is optional. The component followed by the title in the example is the flag list. These are used for labels and categorization. Lastly, the <code class="code">:src:</code> property refers to the path to the content of the item i.e. its source and the <code class="code">:ref:</code> is the list of all the other items the current item references. The components of an item shouldn&rsquo;t be broken down into multiple lines. And, neither should multiple items be declared in one line. Having one line per item keeps everything neatly organized.
+</p>
+<hr>
+</div>
 <div class="section-level-extent" id="How-Tag-Numbering-works">
 <div class="nav-panel">
 <p>
-Next: <a href="#Tag-items" accesskey="n" rel="next">Tag items</a>, Up: <a href="#Introduction" accesskey="u" rel="up">Introduction</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Next: <a href="#Valid-Tag-numbers" accesskey="n" rel="next">Valid Tag numbers</a>, Previous: <a href="#Structure-of-Tag-files" accesskey="p" rel="prev">Structure of Tag files</a>, Up: <a href="#Introduction" accesskey="u" rel="up">Introduction</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
-<h3 class="section" id="How-Tag-Numbering-works-1"><span>1.1 How Tag Numbering works<a class="copiable-link" href="#How-Tag-Numbering-works-1"> &para;</a></span></h3>
+<h3 class="section" id="How-Tag-Numbering-works-1"><span>1.2 How Tag Numbering works<a class="copiable-link" href="#How-Tag-Numbering-works-1"> &para;</a></span></h3>
 
-<p>If we permanently tag our items with floating point numbers and sort them by their tag number, we&rsquo;ll have a plain text document format that&rsquo;s quick to look up and easy to refer to. For example, let&rsquo;s say we have four items with the tags &lsquo;<samp class="samp">@1.0, @2.0, @3.0, @4.0</samp>&rsquo;:
+<p>Tag marks, sorts, and identifies items with alphanumeric floating point numbers. This makes item look-up and referencing a lot easier. For example, let&rsquo;s say we have four items with the tags &lsquo;<samp class="samp">@1.0, @2.0, @3.0, @4.0</samp>&rsquo;:
 </p>
 <div class="example user-tag">
 <pre class="example-preformatted">@1.0
@@ -170,7 +187,7 @@ Next: <a href="#Tag-items" accesskey="n" rel="next">Tag items</a>, Up: <a href="
 @4.0
 </pre></div>
 
-<p>And, we want to insert a new item after &lsquo;<samp class="samp">@1.0</samp>&rsquo; but we don&rsquo;t want to change the tag number of the previous items. What we do here is tag the new item a number between &lsquo;<samp class="samp">@1.0</samp>&rsquo; and &lsquo;<samp class="samp">@2.0</samp>&rsquo; and insert them between those two items. &lsquo;<samp class="samp">@1.1</samp>&rsquo; will suffice here. So, the five sections are &lsquo;<samp class="samp">@1.0, @1.1, @2.0, @3.0, @4.0</samp>&rsquo; where the new &lsquo;<samp class="samp">@1.1</samp>&rsquo; is between &lsquo;<samp class="samp">@1.0</samp>&rsquo; and &lsquo;<samp class="samp">@2.0</samp>&rsquo;:
+<p>And, we want to insert a new item after &lsquo;<samp class="samp">@1.0</samp>&rsquo; but we don&rsquo;t want to change the tag number of the old items. What we do here is tag the new item a number between &lsquo;<samp class="samp">1.0</samp>&rsquo; and &lsquo;<samp class="samp">2.0</samp>&rsquo; and then insert the new item. &lsquo;<samp class="samp">1.1</samp>&rsquo; will suffice here. So, the five sections are &lsquo;<samp class="samp">@1.0, @1.1, @2.0, @3.0, @4.0</samp>&rsquo; where the new &lsquo;<samp class="samp">@1.1</samp>&rsquo; is between &lsquo;<samp class="samp">@1.0</samp>&rsquo; and &lsquo;<samp class="samp">@2.0</samp>&rsquo;:
 </p>
 <div class="example user-tag">
 <pre class="example-preformatted">@1.0
@@ -180,39 +197,22 @@ Next: <a href="#Tag-items" accesskey="n" rel="next">Tag items</a>, Up: <a href="
 @4.0
 </pre></div>
 
-<p>You may have thought we would make the new item the new &lsquo;<samp class="samp">@2.0</samp>&rsquo; and increment the tag number of all the old items from &lsquo;<samp class="samp">@2.0</samp>&rsquo; onwards BUT if we followed such method then the tag numbers wouldn&rsquo;t be permanent. We need permanent identification number so we can reference items by their tag number and rest assure that it never change into another item.
+<p>The tag number of an item is permanent. We need permanent identification number so we can easily reference items and not worry about it ever changing.
 </p>
-<p>Note that a tag can be any positive number that isn&rsquo;t already taken. The tag for the new item could have been any number between &lsquo;<samp class="samp">1.0</samp>&rsquo; and &lsquo;<samp class="samp">2.0</samp>&rsquo; such as &lsquo;<samp class="samp">@1.01</samp>&rsquo;, &lsquo;<samp class="samp">@1.9</samp>&rsquo;, etc. We have infinite possibilities to choose from.
-</p>
-<hr>
-</div>
-<div class="section-level-extent" id="Tag-items">
-<div class="nav-panel">
-<p>
-Next: <a href="#Tag-numbers" accesskey="n" rel="next">Tag numbers</a>, Previous: <a href="#How-Tag-Numbering-works" accesskey="p" rel="prev">How Tag Numbering works</a>, Up: <a href="#Introduction" accesskey="u" rel="up">Introduction</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
-</div>
-<h3 class="section" id="Tag-items-1"><span>1.2 Tag items<a class="copiable-link" href="#Tag-items-1"> &para;</a></span></h3>
-
-<p>The individual elements in a Tag file that are permanently marked with an unique tag number are called tag items. Tag items start at the beginning of line with an &lsquo;<samp class="samp">@</samp>&rsquo; sign followed by its tag number. They can optionally have title, reference list, flag list, and path to its associated file. Example of a tag item:
-</p>
-<div class="example user-tag">
-<pre class="example-preformatted">@1.5 Butterflies _ @1.2 ^ incomplete &lt; butterflies.txt
-</pre></div>
-
-<p>Here, the tag of the item is &lsquo;<samp class="samp">@1.5</samp>&rsquo;, it has title &lsquo;<samp class="samp">Butterflies</samp>&rsquo;, it references another item with tag &lsquo;<samp class="samp">@1.2</samp>&rsquo;, it has the flag &lsquo;<samp class="samp">incomplete</samp>&rsquo;, and its contents lie in a file called <samp class="file">butterflies.txt</samp>. We can imagine there&rsquo;s a file <samp class="file">butterflies.txt</samp> in the same directory as our Tag file.
+<p>Note that a tag can be any positive number that isn&rsquo;t already taken by another item. The tag for the new item could have been any number between &lsquo;<samp class="samp">1.0</samp>&rsquo; and &lsquo;<samp class="samp">2.0</samp>&rsquo; such as &lsquo;<samp class="samp">@1.01</samp>&rsquo;, &lsquo;<samp class="samp">@1.5</samp>&rsquo;, &lsquo;<samp class="samp">@1.9</samp>&rsquo;, etc. We have infinite possibilities to choose from.
 </p>
 <hr>
 </div>
-<div class="section-level-extent" id="Tag-numbers">
+<div class="section-level-extent" id="Valid-Tag-numbers">
 <div class="nav-panel">
 <p>
-Next: <a href="#Title" accesskey="n" rel="next">Title</a>, Previous: <a href="#Tag-items" accesskey="p" rel="prev">Tag items</a>, Up: <a href="#Introduction" accesskey="u" rel="up">Introduction</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Previous: <a href="#How-Tag-Numbering-works" accesskey="p" rel="prev">How Tag Numbering works</a>, Up: <a href="#Introduction" accesskey="u" rel="up">Introduction</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
-<h3 class="section" id="Tag-numbers-1"><span>1.3 Tag numbers<a class="copiable-link" href="#Tag-numbers-1"> &para;</a></span></h3>
+<h3 class="section" id="Valid-Tag-numbers-1"><span>1.3 Valid Tag numbers<a class="copiable-link" href="#Valid-Tag-numbers-1"> &para;</a></span></h3>
 
-<p>Tag numbers are positive alphanumeric floating point numbers consisting of Latin letters and/or Arabic numerals that are used to identify and sort tag items. Tag numbers are represented with an &lsquo;<samp class="samp">@</samp>&rsquo; followed by the tag number. For example, &lsquo;<samp class="samp">@1.0</samp>&rsquo;, &lsquo;<samp class="samp">@1.1</samp>&rsquo;, &lsquo;<samp class="samp">@1.19</samp>&rsquo;, &lsquo;<samp class="samp">@1.B2</samp>&rsquo;, &lsquo;<samp class="samp">@12.5</samp>&rsquo;, &lsquo;<samp class="samp">@786.25</samp>&rsquo;, &lsquo;<samp class="samp">@300000000.59</samp>&rsquo;, and &lsquo;<samp class="samp">@0.0000000001</samp>&rsquo; are all valid tag numbers. The radix-point character &lsquo;<samp class="samp">.</samp>&rsquo; is used to separate the whole number from the fraction.
+<p>Tag numbers are positive alphanumeric floating-point numbers consisting of Latin letters and Arabic numerals that are used identifiers for tag items. Tag numbers are represented with an &lsquo;<samp class="samp">@</samp>&rsquo; followed by the number. For example, &lsquo;<samp class="samp">@1.0</samp>&rsquo;, &lsquo;<samp class="samp">@1.1</samp>&rsquo;, &lsquo;<samp class="samp">@1.19</samp>&rsquo;, &lsquo;<samp class="samp">@1.B2</samp>&rsquo;, &lsquo;<samp class="samp">@12.5</samp>&rsquo;, &lsquo;<samp class="samp">@786.25</samp>&rsquo;, &lsquo;<samp class="samp">@300000000.59</samp>&rsquo;, and &lsquo;<samp class="samp">@0.0000000001</samp>&rsquo; are all valid tag numbers. The radix-point character (<kbd class="kbd">.</kbd>) is used to separate the whole number from the fraction.
 </p>
-<p>The tag number is alphanumeric which means the tag number is made out of both numbers &lsquo;<samp class="samp">0</samp>&rsquo; through &lsquo;<samp class="samp">9</samp>&rsquo; and alphabets &lsquo;<samp class="samp">A</samp>&rsquo; through &lsquo;<samp class="samp">Z</samp>&rsquo; and &lsquo;<samp class="samp">a</samp>&rsquo; through &lsquo;<samp class="samp">z</samp>&rsquo;. After &lsquo;<samp class="samp">9</samp>&rsquo; comes &lsquo;<samp class="samp">A</samp>&rsquo;. This is base 62 numeral system. This is chosen so we can express more tags with fewer digits and create more meaningful tag numbers. All of the numbers in base 62 numeral system in ascending order:
+<p>The tag number is alphanumeric which means the tag number is made out of both the numbers <kbd class="kbd">0</kbd> through <kbd class="kbd">9</kbd> and the letters <kbd class="kbd">A</kbd> through <kbd class="kbd">Z</kbd> and <kbd class="kbd">a</kbd> through <kbd class="kbd">z</kbd>. After <kbd class="kbd">9</kbd> comes <kbd class="kbd">A</kbd>. This is base 62 numeral system. This is chosen so we can express more tags with fewer digits and create more meaningful tag numbers. All the digits in base 62 numeral system in ascending order:
 </p>
 <div class="example">
 <pre class="example-preformatted">0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz
@@ -224,18 +224,16 @@ Next: <a href="#Title" accesskey="n" rel="next">Title</a>, Previous: <a href="#T
 <li>A tag number cannot contain anything other than:
 
 <ul class="itemize mark-minus">
-<li>one &lsquo;<samp class="samp">@</samp>&rsquo; in the beginning
+<li>one <kbd class="kbd">@</kbd> in the beginning
 
 </li><li>alphanumeric characters
 
-</li><li>radix point &lsquo;<samp class="samp">.</samp>&rsquo;
-
-</li><li>&lsquo;<samp class="samp">/</samp>&rsquo; parent-child separator
+</li><li>radix point (<kbd class="kbd">.</kbd>)
 </li></ul>
 
-</li><li>A tag number must be greater than zero. &lsquo;<samp class="samp">@0.0</samp>&rsquo; is not a valid number.
+</li><li>The number must be unique. No two items with the same tag number.
 
-</li><li>There cannot be two tag items in one document with the same tag number.
+</li><li>The number must be greater than zero. &lsquo;<samp class="samp">@0.0</samp>&rsquo; is not a valid tag number.
 
 </li><li>The number must be greater than previous item&rsquo;s and smaller than next item&rsquo;s.
 </li></ul>
@@ -244,40 +242,151 @@ Next: <a href="#Title" accesskey="n" rel="next">Title</a>, Previous: <a href="#T
 </p>
 <hr>
 </div>
-<div class="section-level-extent" id="Title">
+</div>
+<div class="chapter-level-extent" id="Tag-Items">
 <div class="nav-panel">
 <p>
-Next: <a href="#References" accesskey="n" rel="next">References</a>, Previous: <a href="#Tag-numbers" accesskey="p" rel="prev">Tag numbers</a>, Up: <a href="#Introduction" accesskey="u" rel="up">Introduction</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Next: <a href="#GNU-Free-Documentation-License" accesskey="n" rel="next">GNU Free Documentation License</a>, Previous: <a href="#Introduction" accesskey="p" rel="prev">Introduction</a>, Up: <a href="#Top" accesskey="u" rel="up">The Tag Manual</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
-<h3 class="section" id="Title-1"><span>1.4 Title<a class="copiable-link" href="#Title-1"> &para;</a></span></h3>
+<h2 class="chapter" id="Tag-Items-1"><span>2 Tag Items<a class="copiable-link" href="#Tag-Items-1"> &para;</a></span></h2>
 
-<p>An item in Tag can be given a title. Example of items with titles:
+<p>Tag items are the single units in Tag files. Tag items are defined in one line and may have multiple components separated by the pipe (<kbd class="kbd">|</kbd>) symbol. A tag item must start with its tag number component, followed by the title component if it exists; the order of rest of the components does not matter.
+</p>
+<ul class="mini-toc">
+<li><a href="#Item-Title" accesskey="1">Item Title</a></li>
+<li><a href="#Item-Flags" accesskey="2">Item Flags</a></li>
+<li><a href="#Item-Properties" accesskey="3">Item Properties</a></li>
+<li><a href="#Linking-files-to-Items" accesskey="4">Linking files to Items</a></li>
+<li><a href="#Cross_002dreferencing-Items" accesskey="5">Cross-referencing Items</a></li>
+</ul>
+<hr>
+<div class="section-level-extent" id="Item-Title">
+<div class="nav-panel">
+<p>
+Next: <a href="#Item-Flags" accesskey="n" rel="next">Item Flags</a>, Up: <a href="#Tag-Items" accesskey="u" rel="up">Tag Items</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<h3 class="section" id="Item-Title-1"><span>2.1 Item Title<a class="copiable-link" href="#Item-Title-1"> &para;</a></span></h3>
+
+<p>An item in Tag can be given a title. They should be placed right after the tag number. Example of items with titles:
 </p>
 <div class="example user-tag">
-<pre class="example-preformatted">@1.0 Title
-@2.0 Longer Title
-@2.5 A Really Long Title
+<pre class="example-preformatted">@1.0 | The First Item
+@2.0 | Second Item
+@2.5 | The Item After Second Item
+@3.0 | The Last Item?
 </pre></div>
 
-<p>An item in Tag must not be referenced by its title. The tag number should be used instead. Titles are merely for human understanding and exporting.
+<p>Titles are sort of special components as they don&rsquo;t have property key and they aren&rsquo;t really flags.
 </p>
 <hr>
 </div>
-<div class="section-level-extent" id="References">
+<div class="section-level-extent" id="Item-Flags">
 <div class="nav-panel">
 <p>
-Next: <a href="#Flags" accesskey="n" rel="next">Flags</a>, Previous: <a href="#Title" accesskey="p" rel="prev">Title</a>, Up: <a href="#Introduction" accesskey="u" rel="up">Introduction</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Next: <a href="#Item-Properties" accesskey="n" rel="next">Item Properties</a>, Previous: <a href="#Item-Title" accesskey="p" rel="prev">Item Title</a>, Up: <a href="#Tag-Items" accesskey="u" rel="up">Tag Items</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
-<h3 class="section" id="References-1"><span>1.5 References<a class="copiable-link" href="#References-1"> &para;</a></span></h3>
+<h3 class="section" id="Item-Flags-1"><span>2.2 Item Flags<a class="copiable-link" href="#Item-Flags-1"> &para;</a></span></h3>
 
-<p>References let us make connections between two items. Reference list comes after the title of a tag element and the underscore symbol &lsquo;<samp class="samp">_</samp>&rsquo;. For example:
+<p>Flags are words or labels used to convey the quality or features of a Tag item. They must start with the hash (<kbd class="kbd">#</kbd>) symbol followed by the name of the flag. Flags are boolean variables meaning an item either has a specific flag or it does not. They are case-sensitive and multiple of them can reside inside the same component. Flags can be used to label and categorize items:
 </p>
 <div class="example user-tag">
-<pre class="example-preformatted">@1.0 Origin of Butterflies &lt; butterflies.origins.txt
-@2.0 Butterflies in Jurrassic Period? _ @1.0 &lt; butterflies.jurassic.txt
+<pre class="example-preformatted">@b.83 | &quot;The Raft&quot; by Stephen King   | #books #horror
+@b.98 | &quot;Red Rising&quot; by Pierce Brown | #books #dystopian
+@c.21 | Brother (1997)               | #cinema #crime #drama
+@c.a5 | Seven Samurai (1954)         | #cinema #drama
 </pre></div>
 
-<p><samp class="file">butterflies.origins.txt</samp>:
+<p>Some flags have special meaning to the Tag system. For example, an item can have the <code class="code">#ARCHIVED</code> flag indicates it is now archived and will be ignored by the compiler:
+</p>
+<div class="example user-tag">
+<pre class="example-preformatted">@3.75 | #ARCHIVED
+</pre></div>
+
+<p>Todo flags can be used to turn an item into a todo item. <code class="code">#TODO</code> and <code class="code">#DONE</code> are the two basic todo states but more can be used and configured. Examples of items with todo flags:
+</p>
+<div class="example user-tag">
+<pre class="example-preformatted">@td.01 | Finish Reading about Flags    | #TODO
+@td.02 | Write about Biggest Overcomes | #DONE
+@td.31 | Share Tag with others         | #TODO #IMPORTANT
+</pre></div>
+
+<hr>
+</div>
+<div class="section-level-extent" id="Item-Properties">
+<div class="nav-panel">
+<p>
+Next: <a href="#Linking-files-to-Items" accesskey="n" rel="next">Linking files to Items</a>, Previous: <a href="#Item-Flags" accesskey="p" rel="prev">Item Flags</a>, Up: <a href="#Tag-Items" accesskey="u" rel="up">Tag Items</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<h3 class="section" id="Item-Properties-1"><span>2.3 Item Properties<a class="copiable-link" href="#Item-Properties-1"> &para;</a></span></h3>
+
+<p>Items in Tag can be given named properties. Properties are key-value pairs. The key of the property need to be enclosed inside colon (<kbd class="kbd">:</kbd>) symbols and it should be followed by the value, like &lsquo;<samp class="samp">:<var class="var">key</var>: <var class="var">value</var></samp>&rsquo;. Properties can be used to denote named information regarding an item:
+</p>
+<div class="example user-tag">
+<pre class="example-preformatted">@c.35 | Scarface (1983)           | :director: Brian De Palma | :rating: 4.1
+@c.39 | 12 Angry Men (1957)       | :director: Sidney Lumet   | :rating: 4.6
+@c.42 | Memories of Murder (2003) | :director: Bong Joon Ho   | :rating: 4.4
+</pre></div>
+
+<p>Properties can be used to establishs connection between multiple items in a Tag document:
+</p>
+<div class="example user-tag">
+<pre class="example-preformatted">@3.24 | Life of an Octopus
+@3.9o | Living in a Garden
+@3.98 | Octupus's Garden? | :ref: @3.24 @3.9o
+@12.1 | C main function | :dep: @12.9
+@12.9 | C helper functions
+</pre></div>
+
+<p>Multiple properties must not be declared in a single component. Use one component per property declaration.
+</p>
+<hr>
+</div>
+<div class="section-level-extent" id="Linking-files-to-Items">
+<div class="nav-panel">
+<p>
+Next: <a href="#Cross_002dreferencing-Items" accesskey="n" rel="next">Cross-referencing Items</a>, Previous: <a href="#Item-Properties" accesskey="p" rel="prev">Item Properties</a>, Up: <a href="#Tag-Items" accesskey="u" rel="up">Tag Items</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<h3 class="section" id="Linking-files-to-Items-1"><span>2.4 Linking files to Items<a class="copiable-link" href="#Linking-files-to-Items-1"> &para;</a></span></h3>
+
+<p>Using appropriate properties, a file can be linked to a tag item. The <code class="code">:src:</code> property is used to link the source (content) of an item. For example, a tag item that has its content stored in <samp class="file">contents.txt</samp>:
+</p>
+<div class="example user-tag">
+<pre class="example-preformatted">@1.0 | I Have Contents! | :src: contents.txt
+</pre></div>
+
+<p><samp class="file">contents.txt</samp>:
+</p>
+<div class="example user-txt">
+<pre class="example-preformatted">I am the contents of @1.0. Please think of me
+as contents inside that item.
+</pre></div>
+
+<p>We can also denote the output file. For example, using property <code class="code">:obj:</code> we can declare the desired object path for our C code:
+</p>
+<div class="example user-tag">
+<pre class="example-preformatted">@3.0 | My C Code | :sh: cc -c -o $:obj: $:src: | :obj: code.o | :src: code.c
+</pre></div>
+
+<p>That value given with the <code class="code">:sh:</code> (shell command) property will translate to &lsquo;<samp class="samp">cc -c -o code.o code.c</samp>&rsquo;. Running that tag item will compile <samp class="file">code.c</samp> into <samp class="file">code.o</samp>. 
+</p>
+<hr>
+</div>
+<div class="section-level-extent" id="Cross_002dreferencing-Items">
+<div class="nav-panel">
+<p>
+Previous: <a href="#Linking-files-to-Items" accesskey="p" rel="prev">Linking files to Items</a>, Up: <a href="#Tag-Items" accesskey="u" rel="up">Tag Items</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<h3 class="section" id="Cross_002dreferencing-Items-1"><span>2.5 Cross-referencing Items<a class="copiable-link" href="#Cross_002dreferencing-Items-1"> &para;</a></span></h3>
+
+<p>An item in Tag can reference other items using the reference list property. The property key for reference list is <code class="code">:ref:</code>. For example:
+</p>
+<div class="example user-tag">
+<pre class="example-preformatted">@1.0 | Origin of Butterflies            | :src: bfs.origins.txt
+@2.0 | The Jurrassic Period&nbsp;           | :src: jurassic.txt
+@2.2 | Butterflies in Jurrassic Period? | :ref: @1.0 @2.0 | :src: bfs.jrc.txt
+</pre></div>
+
+<p><samp class="file">bfs.origins.txt</samp>:
 </p>
 <div class="example user-txt">
 <pre class="example-preformatted">:SOURCE: [[https://pmc.ncbi.nlm.nih.gov/articles/PMC10250192/]]
@@ -286,7 +395,16 @@ superfamily. Moleculars evidences suggests that
 butterflies may have originated in the Cretaceous period.
 </pre></div>
 
-<p><samp class="file">butterflies.jurassic.txt</samp>:
+<p><samp class="file">jurassic.txt</samp>:
+</p>
+<div class="example user-txt">
+<pre class="example-preformatted">The Jurassic is a geological period that spanned
+from approximately 201 to 145 million years
+ago: end of the Triassic Period to the beginning
+of the Cretaceous period.
+</pre></div>
+
+<p><samp class="file">bfs.jrc.txt</samp>:
 </p>
 <div class="example user-txt">
 <pre class="example-preformatted">Butterflies likely originated from the Cretaceous
@@ -296,106 +414,15 @@ So, unless there's new evidence, butterflies probably
 didn't exist during the Jurassic period.
 </pre></div>
 
-<p>Here, the contents of &lsquo;<samp class="samp">@2.0</samp>&rsquo; references the contents of &lsquo;<samp class="samp">@1.0</samp>&rsquo; to make a point. The &lsquo;<samp class="samp">&lt;</samp>&rsquo; sign is used to indicate the path to the contents of the item.
+<p>The contents of &lsquo;<samp class="samp">@2.0</samp>&rsquo; references the contents of &lsquo;<samp class="samp">@1.0</samp>&rsquo; and &lsquo;<samp class="samp">@2.0</samp>&rsquo; to make a point.
 </p>
-<p>References can be used for:
-</p>
-<ul class="itemize mark-bullet">
-<li>Referencing contents of another item
-
-</li><li>Using variables declared in another item
-
-</li><li>Merging contents of multiple items together
-
-</li><li>Making connections between multiple Tag documents
-</li></ul>
-
-<hr>
-</div>
-<div class="section-level-extent" id="Flags">
-<div class="nav-panel">
-<p>
-Next: <a href="#Working-with-files" accesskey="n" rel="next">Working with files</a>, Previous: <a href="#References" accesskey="p" rel="prev">References</a>, Up: <a href="#Introduction" accesskey="u" rel="up">Introduction</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
-</div>
-<h3 class="section" id="Flags-1"><span>1.6 Flags<a class="copiable-link" href="#Flags-1"> &para;</a></span></h3>
-
-<p>Flags are words or labels used to convey the quality or features of a Tag item. For example, an item can have the &lsquo;<samp class="samp">ARCHIVED</samp>&rsquo; flag indicating it is now archived (and will be ignored by the compiler). Flag lists starts after the reference list followed by the &lsquo;<samp class="samp">^</samp>&rsquo; symbol. If the reference list is absent, flag list can start right after the title or tag number. Flags are case sensitive. Here&rsquo;s an example of flag used to convey that an item&rsquo;s content is still incomplete:
-</p>
-<div class="example user-tag">
-<pre class="example-preformatted">@3.75 Faith and Humanity _ @2.59 ^ incomplete
-</pre></div>
-
-<p>Todo flags can be used to turn an item into a todo item. &lsquo;<samp class="samp">TODO</samp>&rsquo; and &lsquo;<samp class="samp">DONE</samp>&rsquo; are the two basic todo states but more can be used and configured. Examples of items with todo flags:
-</p>
-<div class="example user-tag">
-<pre class="example-preformatted">@td.01 Finish section: attributes ^ TODO
-@td.02 Write about biggest overcomes ^ DONE
-@td.31 Share Tag with others ^ TODO IMPORTANT
-</pre></div>
-
-<p>Some flags have parameter. For example, &quot;MOVED-TO&quot; flag will need an argument tag number to indicate its new location. Example of a flag with argument that indicates the new location of the item:
-</p>
-<div class="example user-tag">
-<pre class="example-preformatted">@1.75 ^ MOVED-TO=@5.0
-@5.0 Ingenuity
-</pre></div>
-
-<hr>
-</div>
-<div class="section-level-extent" id="Working-with-files">
-<div class="nav-panel">
-<p>
-Previous: <a href="#Flags" accesskey="p" rel="prev">Flags</a>, Up: <a href="#Introduction" accesskey="u" rel="up">Introduction</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
-</div>
-<h3 class="section" id="Working-with-files-1"><span>1.7 Working with files<a class="copiable-link" href="#Working-with-files-1"> &para;</a></span></h3>
-
-<p>A tag item can be given a path to a file as its source or destination. We&rsquo;ll need to preceed the path by &lsquo;<samp class="samp">&lt;</samp>&rsquo; symbol if it&rsquo;s source and &lsquo;<samp class="samp">&gt;</samp>&rsquo; symbol if it&rsquo;s destination. A source file means it&rsquo;s the file that contains the containts of our tag item. For example a tag item can have the source <samp class="file">contents.txt</samp> to indicate there&rsquo;s a file with that name and the contents of our item resides there:
-</p>
-<div class="example user-tag">
-<pre class="example-preformatted">@1.0 I Have Contents! &lt; contents.txt
-</pre></div>
-
-<p><samp class="file">contents.txt</samp>:
-</p>
-<div class="example user-txt">
-<pre class="example-preformatted">I am the contents of @1.0. Please think of me
-as lines under that item.
-</pre></div>
-
-<p>By having source files associated with tag items and making connection between those tag items we have a system where we are essentially making connection between files! Anyway, we can also have source files that indicates where our generated contents will go to. For example we can concatenate contents of two items and put the concatenated content into another file:
-</p>
-<div class="example user-tag">
-<pre class="example-preformatted">@1.0 &lt; first.txt
-@2.0 &lt; second.txt
-@3.0 _ @1.0 @2.0 ^ CONCAT &gt; merged.txt
-</pre></div>
-
-<p><samp class="file">first.txt</samp>:
-</p>
-<div class="example user-txt">
-<pre class="example-preformatted">This is the first file.
-</pre></div>
-
-<p><samp class="file">second.txt</samp>:
-</p>
-<div class="example user-txt">
-<pre class="example-preformatted">This is the second file.
-</pre></div>
-
-<p>Concatenated <samp class="file">merged.txt</samp>:
-</p>
-<div class="example user-txt">
-<pre class="example-preformatted">This is the first file.
-This is the second file.
-</pre></div>
-
 <hr>
 </div>
 </div>
 <div class="appendix-level-extent" id="GNU-Free-Documentation-License">
 <div class="nav-panel">
 <p>
-Previous: <a href="#Introduction" accesskey="p" rel="prev">Introduction</a>, Up: <a href="#Top" accesskey="u" rel="up">The Tag Manual</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Previous: <a href="#Tag-Items" accesskey="p" rel="prev">Tag Items</a>, Up: <a href="#Top" accesskey="u" rel="up">The Tag Manual</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <h2 class="appendix" id="GNU-Free-Documentation-License-1"><span>Appendix A GNU Free Documentation License<a class="copiable-link" href="#GNU-Free-Documentation-License-1"> &para;</a></span></h2>
 

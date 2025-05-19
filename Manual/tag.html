@@ -50,12 +50,16 @@ body {
     border: .1em solid grey;
 }
 
+p, pre, li, dt, dd, table, code, address {
+    line-height: 1.4em;
+}
+
 ::selection {
   color: #eeddbb;
   background-color: #448888;
 }
 
-.display, .example {
+.display, .example, .verbatim {
     overflow: auto;
 }
 
@@ -128,6 +132,24 @@ Texts.  A copy of the license is included in the section entitled
     <li><a id="toc-Item-Properties" href="#Item-Properties">2.3 Item Properties</a></li>
     <li><a id="toc-Linking-files-to-Items" href="#Linking-files-to-Items">2.4 Linking files to Items</a></li>
     <li><a id="toc-Cross_002dreferencing-Items" href="#Cross_002dreferencing-Items">2.5 Cross-referencing Items</a></li>
+  </ul></li>
+  <li><a id="toc-Document-Properties" href="#Document-Properties">3 Document Properties</a>
+  <ul class="toc-numbered-mark">
+    <li><a id="toc-Document-header-properties" href="#Document-header-properties">3.1 Document header properties</a></li>
+    <li><a id="toc-Example-document-header" href="#Example-document-header">3.2 Example document header</a></li>
+    <li><a id="toc-Document-variables" href="#Document-variables">3.3 Document variables</a></li>
+  </ul></li>
+  <li><a id="toc-Dates-and-Times" href="#Dates-and-Times">4 Dates and Times</a>
+  <ul class="toc-numbered-mark">
+    <li><a id="toc-ISO-8601-Timestamps" href="#ISO-8601-Timestamps">4.1 ISO 8601 Timestamps</a>
+    <ul class="toc-numbered-mark">
+      <li><a id="toc-ISO-8601-Dates" href="#ISO-8601-Dates">4.1.1 ISO 8601 Dates</a></li>
+      <li><a id="toc-ISO-8601-Times" href="#ISO-8601-Times">4.1.2 ISO 8601 Times</a></li>
+      <li><a id="toc-ISO-8601-Time-zone" href="#ISO-8601-Time-zone">4.1.3 ISO 8601 Time zone</a></li>
+    </ul></li>
+    <li><a id="toc-ISO-8601-Time-periods" href="#ISO-8601-Time-periods">4.2 ISO 8601 Time periods</a></li>
+    <li><a id="toc-ISO-8601-Time-intervals" href="#ISO-8601-Time-intervals">4.3 ISO 8601 Time intervals</a></li>
+    <li><a id="toc-ISO-8601-Repeating-intervals" href="#ISO-8601-Repeating-intervals">4.4 ISO 8601 Repeating intervals</a></li>
   </ul></li>
   <li><a id="toc-GNU-Free-Documentation-License" href="#GNU-Free-Documentation-License">Appendix A GNU Free Documentation License</a></li>
 </ul>
@@ -214,10 +236,8 @@ Previous: <a href="#How-Tag-Numbering-works" accesskey="p" rel="prev">How Tag Nu
 </p>
 <p>The tag number is alphanumeric which means the tag number is made out of both the numbers <kbd class="kbd">0</kbd> through <kbd class="kbd">9</kbd> and the letters <kbd class="kbd">A</kbd> through <kbd class="kbd">Z</kbd> and <kbd class="kbd">a</kbd> through <kbd class="kbd">z</kbd>. After <kbd class="kbd">9</kbd> comes <kbd class="kbd">A</kbd>. This is base 62 numeral system. This is chosen so we can express more tags with fewer digits and create more meaningful tag numbers. All the digits in base 62 numeral system in ascending order:
 </p>
-<div class="example">
-<pre class="example-preformatted">0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz
-</pre></div>
-
+<pre class="verbatim">0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz
+</pre>
 <p>There a few rules to choosing a tag numbers:
 </p>
 <ul class="itemize mark-bullet">
@@ -246,7 +266,7 @@ Previous: <a href="#How-Tag-Numbering-works" accesskey="p" rel="prev">How Tag Nu
 <div class="chapter-level-extent" id="Tag-Items">
 <div class="nav-panel">
 <p>
-Next: <a href="#GNU-Free-Documentation-License" accesskey="n" rel="next">GNU Free Documentation License</a>, Previous: <a href="#Introduction" accesskey="p" rel="prev">Introduction</a>, Up: <a href="#Top" accesskey="u" rel="up">The Tag Manual</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Next: <a href="#Document-Properties" accesskey="n" rel="next">Document Properties</a>, Previous: <a href="#Introduction" accesskey="p" rel="prev">Introduction</a>, Up: <a href="#Top" accesskey="u" rel="up">The Tag Manual</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <h2 class="chapter" id="Tag-Items-1"><span>2 Tag Items<a class="copiable-link" href="#Tag-Items-1"> &para;</a></span></h2>
 
@@ -419,10 +439,260 @@ didn't exist during the Jurassic period.
 <hr>
 </div>
 </div>
+<div class="chapter-level-extent" id="Document-Properties">
+<div class="nav-panel">
+<p>
+Next: <a href="#Dates-and-Times" accesskey="n" rel="next">Dates and Times</a>, Previous: <a href="#Tag-Items" accesskey="p" rel="prev">Tag Items</a>, Up: <a href="#Top" accesskey="u" rel="up">The Tag Manual</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<h2 class="chapter" id="Document-Properties-1"><span>3 Document Properties<a class="copiable-link" href="#Document-Properties-1"> &para;</a></span></h2>
+
+<p>Sometimes we need to set properties not for a particular tag item but for the whole document. These may include document header information such as the title, author, and date or variables that we want all the items in the document to be able to access. Document properties are defined at the beginning of the tag file before the definition of any tag item.
+</p>
+<ul class="mini-toc">
+<li><a href="#Document-header-properties" accesskey="1">Document header properties</a></li>
+<li><a href="#Example-document-header" accesskey="2">Example document header</a></li>
+<li><a href="#Document-variables" accesskey="3">Document variables</a></li>
+</ul>
+<hr>
+<div class="section-level-extent" id="Document-header-properties">
+<div class="nav-panel">
+<p>
+Next: <a href="#Example-document-header" accesskey="n" rel="next">Example document header</a>, Up: <a href="#Document-Properties" accesskey="u" rel="up">Document Properties</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<h3 class="section" id="Document-header-properties-1"><span>3.1 Document header properties<a class="copiable-link" href="#Document-header-properties-1"> &para;</a></span></h3>
+
+<p>These properties can be used as the header of the document:
+</p>
+<dl class="table">
+<dt><code class="code">:TITLE:</code></dt>
+<dd><p>The title of the document.
+</p>
+</dd>
+<dt><code class="code">:AUTHOR:</code></dt>
+<dd><p>The author of the document.
+</p>
+</dd>
+<dt><code class="code">:DATE:</code></dt>
+<dd><p>A date or a timestamp.
+</p>
+</dd>
+<dt><code class="code">:EMAIL:</code></dt>
+<dd><p>An email address.
+</p>
+</dd>
+<dt><code class="code">:LANGUAGE:</code></dt>
+<dd><p>Language of the document.
+</p>
+</dd>
+<dt><code class="code">:TZ:</code></dt>
+<dd><p>Time offset for timestamps. See <a class="xref" href="#ISO-8601-Time-zone">ISO 8601 Time zone</a>.
+</p>
+</dd>
+<dt><code class="code">:DESCRIPTION:</code></dt>
+<dd><p>A short description of the document.
+</p></dd>
+</dl>
+
+<hr>
+</div>
+<div class="section-level-extent" id="Example-document-header">
+<div class="nav-panel">
+<p>
+Next: <a href="#Document-variables" accesskey="n" rel="next">Document variables</a>, Previous: <a href="#Document-header-properties" accesskey="p" rel="prev">Document header properties</a>, Up: <a href="#Document-Properties" accesskey="u" rel="up">Document Properties</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<h3 class="section" id="Example-document-header-1"><span>3.2 Example document header<a class="copiable-link" href="#Example-document-header-1"> &para;</a></span></h3>
+
+<p>An example document with header properties:
+</p>
+<div class="example user-tag">
+<pre class="example-preformatted">:TITLE: My Journal
+:AUTHOR: Mike Anderson
+:DATE: &lt;1999-02-21&gt;
+:EMAIL: anderson@little-tall.org
+:LANGUAGE: en
+:DESCRIPTION: My journal entries from the Little Tall Island.
+
+@1.04 | Proposing Molly | :src: proposing-molly.txt
+@1.23 | Graduation      | :src: graduation.txt
+@1.45 | Our Wedding     | :src: our-wedding.txt
+@2.34 | Having a son    | :src: having-son.txt
+@3.21 | Our new venture | :src: new-business.txt
+@4.12 | The Big Storm   | :src: big-storm.txt
+</pre></div>
+
+<hr>
+</div>
+<div class="section-level-extent" id="Document-variables">
+<div class="nav-panel">
+<p>
+Previous: <a href="#Example-document-header" accesskey="p" rel="prev">Example document header</a>, Up: <a href="#Document-Properties" accesskey="u" rel="up">Document Properties</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<h3 class="section" id="Document-variables-1"><span>3.3 Document variables<a class="copiable-link" href="#Document-variables-1"> &para;</a></span></h3>
+
+<p>You can define a property at the beginning of a tag file and use it everywhere. The header properties are also document variables. Example of document variable and its usage:
+</p>
+<div class="example user-tag">
+<pre class="example-preformatted">:TITLE: How to use document variables
+:AUTHOR: Doc Dopey
+
+:x: 5
+:name: :AUTHOR:
+
+@1.0 | :sh: echo My name is :name:
+@1.1 | :sh: echo x = :x:
+@1.2 | :sh: echo The title of this tag is :TITLE:
+</pre></div>
+
+<p>Running the <code class="code">:sh:</code> commands of the above example would produce:
+</p>
+<div class="example">
+<pre class="example-preformatted">My name is Doc Dopey
+x = 5
+The title of this tag is How to use document variables
+</pre></div>
+
+<hr>
+</div>
+</div>
+<div class="chapter-level-extent" id="Dates-and-Times">
+<div class="nav-panel">
+<p>
+Next: <a href="#GNU-Free-Documentation-License" accesskey="n" rel="next">GNU Free Documentation License</a>, Previous: <a href="#Document-Properties" accesskey="p" rel="prev">Document Properties</a>, Up: <a href="#Top" accesskey="u" rel="up">The Tag Manual</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<h2 class="chapter" id="Dates-and-Times-1"><span>4 Dates and Times<a class="copiable-link" href="#Dates-and-Times-1"> &para;</a></span></h2>
+
+<p>Tag supports timestamps to satisfy the need for date and time representation. Timestamps can be used for tracking time, scheduling todo items, etc. To denote a certain period in time, tag has time period and to denote a duration of time, tag has time duration.
+</p>
+<p>Tag supports ISO 8601 format for representing time. Timestamps and durations in Tag should be enclosed inside angle bracket (<kbd class="kbd">&lt;&gt;</kbd>) symbols.
+</p>
+<ul class="mini-toc">
+<li><a href="#ISO-8601-Timestamps" accesskey="1">ISO 8601 Timestamps</a></li>
+<li><a href="#ISO-8601-Time-periods" accesskey="2">ISO 8601 Time periods</a></li>
+<li><a href="#ISO-8601-Time-intervals" accesskey="3">ISO 8601 Time intervals</a></li>
+<li><a href="#ISO-8601-Repeating-intervals" accesskey="4">ISO 8601 Repeating intervals</a></li>
+</ul>
+<hr>
+<div class="section-level-extent" id="ISO-8601-Timestamps">
+<div class="nav-panel">
+<p>
+Next: <a href="#ISO-8601-Time-periods" accesskey="n" rel="next">ISO 8601 Time periods</a>, Up: <a href="#Dates-and-Times" accesskey="u" rel="up">Dates and Times</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<h3 class="section" id="ISO-8601-Timestamps-1"><span>4.1 ISO 8601 Timestamps<a class="copiable-link" href="#ISO-8601-Timestamps-1"> &para;</a></span></h3>
+
+<p>ISO 8601, maintained by the International Organization for Standardization, is an international standard for time-related data. ISO 8601 timestamp format is ordered from largest to smallest unit of time, padded with leading zeros, uses hyphen and colons as unit separators, supports timezone, and is in 24-hour format. ISO 8601 supports multiple formats for representing time but commonly <code class="code">&lt;<var class="var">yyyy</var>-<var class="var">mm</var>-<var class="var">dd</var>&gt;</code> is used for just date and <code class="code">&lt;<var class="var">yyyy</var>-<var class="var">mm</var>-<var class="var">dd</var>T<var class="var">hh</var>:<var class="var">mm</var>&gt;</code> is used for date and time.
+</p>
+<ul class="mini-toc">
+<li><a href="#ISO-8601-Dates" accesskey="1">ISO 8601 Dates</a></li>
+<li><a href="#ISO-8601-Times" accesskey="2">ISO 8601 Times</a></li>
+<li><a href="#ISO-8601-Time-zone" accesskey="3">ISO 8601 Time zone</a></li>
+</ul>
+<hr>
+<div class="subsection-level-extent" id="ISO-8601-Dates">
+<div class="nav-panel">
+<p>
+Next: <a href="#ISO-8601-Times" accesskey="n" rel="next">ISO 8601 Times</a>, Up: <a href="#ISO-8601-Timestamps" accesskey="u" rel="up">ISO 8601 Timestamps</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<h4 class="subsection" id="ISO-8601-Dates-1"><span>4.1.1 ISO 8601 Dates<a class="copiable-link" href="#ISO-8601-Dates-1"> &para;</a></span></h4>
+
+<p>Dates are most easily represented with the year-month-day format. For example, &lsquo;<samp class="samp">&lt;2025-05-07&gt;</samp>&rsquo;. The units are separated with hyphen (<kbd class="kbd">-</kbd>) symbol. Each unit has a fixed number of digits and must be padded with leading zeros. You may drop the month day to represent just a year and a month. For example, to represent May 2025 you could use &lsquo;<samp class="samp">&lt;2025-05&gt;</samp>&rsquo; and to represent just the year 2025 use &lsquo;<samp class="samp">&lt;2025&gt;</samp>&rsquo;.
+</p>
+<p>Dates can also be represented with week numbers. The format is <code class="code">&lt;<var class="var">YYYY</var>-W<var class="var">ww</var>-<var class="var">D</var>&gt;</code> where <var class="var">YYYY</var> represents ISO week-numbering year, <var class="var">ww</var> represents the week number from &lsquo;<samp class="samp">W01</samp>&rsquo; to &lsquo;<samp class="samp">W53</samp>&rsquo; of the year, and <var class="var">D</var> represents the weekday number from &lsquo;<samp class="samp">1</samp>&rsquo; (Monday) to &lsquo;<samp class="samp">7</samp>&rsquo; (Sunday). For example, Wednesday 19th week of the year 2025 is &lsquo;<samp class="samp">2025-W19-3</samp>&rsquo;. The weekday number can be ignored to represent a week of a year. So, 19th week of the year 2025 is &lsquo;<samp class="samp">2025-W19</samp>&rsquo;.
+</p>
+<p>Use ordinal date to represent date with days since the start of the year. The format is <code class="code"><var class="var">yyyy</var>-<var class="var">DDD</var></code> where <var class="var">yyyy</var> represents a year and <var class="var">DDD</var> represents the day of the year. For example, 127th day of the year 2025 is &lsquo;<samp class="samp">2025-127</samp>&rsquo;. This will not create ambiguity with year-month since month numbers have two digits and day of the year numbers have three.
+</p>
+<hr>
+</div>
+<div class="subsection-level-extent" id="ISO-8601-Times">
+<div class="nav-panel">
+<p>
+Next: <a href="#ISO-8601-Time-zone" accesskey="n" rel="next">ISO 8601 Time zone</a>, Previous: <a href="#ISO-8601-Dates" accesskey="p" rel="prev">ISO 8601 Dates</a>, Up: <a href="#ISO-8601-Timestamps" accesskey="u" rel="up">ISO 8601 Timestamps</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<h4 class="subsection" id="ISO-8601-Times-1"><span>4.1.2 ISO 8601 Times<a class="copiable-link" href="#ISO-8601-Times-1"> &para;</a></span></h4>
+
+<p>Times in ISO 8601 are represented with hours, minutes, and seconds. The units are separated by colon (<kbd class="kbd">:</kbd>) symbol. The format is <code class="code">&lt;<var class="var">hh</var>:<var class="var">mm</var>:<var class="var">ss</var>&gt;</code> for hour, minute, and time and <code class="code">&lt;<var class="var">hh</var>:<var class="var">mm</var>&gt;</code> for just hour and minute. The units have fixed number of digits and must be padded with leading zeros.
+</p>
+<p>To combine date and time the delimeter <kbd class="kbd">T</kbd> must be used. For example &lsquo;<samp class="samp">&lt;2025-05-07T18:00&gt;</samp>&rsquo;, &lsquo;<samp class="samp">&lt;2025-W03-3T03:00&gt;</samp>&rsquo;, and &lsquo;<samp class="samp">&lt;2025-120T12:34:33&gt;</samp>&rsquo; are valid ISO 8601 timestamps with both date and time.
+</p>
+<hr>
+</div>
+<div class="subsection-level-extent" id="ISO-8601-Time-zone">
+<div class="nav-panel">
+<p>
+Previous: <a href="#ISO-8601-Times" accesskey="p" rel="prev">ISO 8601 Times</a>, Up: <a href="#ISO-8601-Timestamps" accesskey="u" rel="up">ISO 8601 Timestamps</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<h4 class="subsection" id="ISO-8601-Time-zone-1"><span>4.1.3 ISO 8601 Time zone<a class="copiable-link" href="#ISO-8601-Time-zone-1"> &para;</a></span></h4>
+
+<p>Without the time zone designator, ISO 8601 is assumed to be in local time. This is dangerous if the time information is communicated between people from different time zones or if the person using the document ever moves to a place with different time zone. A time offset should be appended to the timestamp to specify the time zone. The format will be <code class="code">&lt;<var class="var">date</var>T<var class="var">time</var><var class="var">±</var><var class="var">hh:mm</var>&gt;</code> where <var class="var">date</var> and <var class="var">time</var> refers to the timestamps&rsquo;s date and time respectively and <var class="var">±hh:mm</var> refers to the timez one offset. The offset must be given either a plus (<kbd class="kbd">+</kbd>) or minus (<kbd class="kbd">-</kbd>) symbol proceeded by the offset time. A negative offset (minus) means the timez one is behind the UTC and a postive offset means it&rsquo;s ahead of UTC.
+</p>
+<p>The time zone offset for New York is &lsquo;<samp class="samp">-05:00</samp>&rsquo; so to describe 10:30 in the morning of 9th May of 2025 in New York, you&rsquo;d write &lsquo;<samp class="samp">&lt;2025-05-09T10:30-05:00&gt;</samp>&rsquo;. On the other end of the world, if you want to describe 21:30 of 9th May of 2025 in Bangladesh, you&rsquo;d write &lsquo;<samp class="samp">&lt;2025-05-09T21:30+06:00&gt;</samp>&rsquo;.
+</p>
+<p>If the time is in UTC (same as &lsquo;<samp class="samp">+00:00</samp>&rsquo;), you can replace the timezone offset with <kbd class="kbd">Z</kbd>. For example, 15:30 of 9th May of 2025 in UTC is &lsquo;<samp class="samp">&lt;2025-05-09T15:30Z&gt;</samp>&rsquo;.
+</p>
+<p>If you prefer not to clutter your timestamps with extra information, you could use the <code class="code">:TZ:</code> document property. This offset you provide there will be used by all the timestamps with missing offset. Example usage:
+</p>
+<div class="example user-tag">
+<pre class="example-preformatted">:TITLE: Document with global time offset
+:TZ: +08:00
+
+@1.0 | 2026 New Year in Philippines | :time: &lt;2026-01-01T00:00&gt;
+@2.0 | 2026 First Philippine Republic Day | :time: &lt;2026-01-23&gt;
+</pre></div>
+
+<hr>
+</div>
+</div>
+<div class="section-level-extent" id="ISO-8601-Time-periods">
+<div class="nav-panel">
+<p>
+Next: <a href="#ISO-8601-Time-intervals" accesskey="n" rel="next">ISO 8601 Time intervals</a>, Previous: <a href="#ISO-8601-Timestamps" accesskey="p" rel="prev">ISO 8601 Timestamps</a>, Up: <a href="#Dates-and-Times" accesskey="u" rel="up">Dates and Times</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<h3 class="section" id="ISO-8601-Time-periods-1"><span>4.2 ISO 8601 Time periods<a class="copiable-link" href="#ISO-8601-Time-periods-1"> &para;</a></span></h3>
+
+<p>Durations or time periods define a length of time. They can be used to denote duration of a todo item, how long an event is supposed to take, the end time given the begin time (or vice versa) of an interval, etc. Time periods in ISO 8601 are represented with the letter <kbd class="kbd">P</kbd> (meaning period) followed by the number and element pairs. For example, 1 year is represented with &lsquo;<samp class="samp">&lt;P1Y&gt;</samp>&rsquo;, 7 months and 2 days is represented with &lsquo;<samp class="samp">&lt;P7M2D&gt;</samp>&rsquo;, 12 minutes and 30 seconds is represented with &lsquo;<samp class="samp">&lt;PT12M30S&gt;</samp>&rsquo;, and 2 days and 12 hours is represented with &lsquo;<samp class="samp">&lt;P2DT12H&gt;</samp>&rsquo;. The letter <kbd class="kbd">T</kbd> is a time designator that is placed before the time components to reduce ambiguity with month and minute components. All the period designators in order:
+</p>
+<pre class="verbatim">P (mandatory period indicator)
+Y (year)
+M (month)
+W (week)
+D (day)
+T (time designator)
+H (hour)
+M (minute)
+S (second)
+</pre>
+<p>Note that &lsquo;<samp class="samp">&lt;P1M&gt;</samp>&rsquo; means a period of one month. How many days are in that month depends on the context. If you wish to represent a period of 30 days use &lsquo;<samp class="samp">&lt;P30D&gt;</samp>&rsquo; instead.
+</p>
+<hr>
+</div>
+<div class="section-level-extent" id="ISO-8601-Time-intervals">
+<div class="nav-panel">
+<p>
+Next: <a href="#ISO-8601-Repeating-intervals" accesskey="n" rel="next">ISO 8601 Repeating intervals</a>, Previous: <a href="#ISO-8601-Time-periods" accesskey="p" rel="prev">ISO 8601 Time periods</a>, Up: <a href="#Dates-and-Times" accesskey="u" rel="up">Dates and Times</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<h3 class="section" id="ISO-8601-Time-intervals-1"><span>4.3 ISO 8601 Time intervals<a class="copiable-link" href="#ISO-8601-Time-intervals-1"> &para;</a></span></h3>
+
+<p>Intervals in ISO 8601 can be represented with <code class="code">&lt;<var class="var">start</var>/<var class="var">end</var>&gt;</code>, <code class="code">&lt;<var class="var">start</var>/<var class="var">duration</var>&gt;</code>, or <code class="code">&lt;<var class="var">duration</var>/<var class="var">end</var>&gt;</code>. For example, an interval starts at the beginning of year 2024 and ends at the start of year 2026 is &lsquo;<samp class="samp">&lt;2024-01-01/2026-01-01&gt;</samp>&rsquo; or &lsquo;<samp class="samp">&lt;2024-01-01/P2Y&gt;</samp>&rsquo; or &lsquo;<samp class="samp">&lt;P2Y/2026-01-01&gt;</samp>&rsquo;. Intervals can be used to plan your todo items, set the relevance time, etc. A time interval with only duration is not allowed.
+</p>
+<hr>
+</div>
+<div class="section-level-extent" id="ISO-8601-Repeating-intervals">
+<div class="nav-panel">
+<p>
+Previous: <a href="#ISO-8601-Time-intervals" accesskey="p" rel="prev">ISO 8601 Time intervals</a>, Up: <a href="#Dates-and-Times" accesskey="u" rel="up">Dates and Times</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<h3 class="section" id="ISO-8601-Repeating-intervals-1"><span>4.4 ISO 8601 Repeating intervals<a class="copiable-link" href="#ISO-8601-Repeating-intervals-1"> &para;</a></span></h3>
+
+<p>Repetition in time can be represented in ISO 8601 with repeating intervals. The format is <code class="code">&lt;R<var class="var">n</var>/<var class="var">start</var>/<var class="var">duration</var>&gt;</code>. The letter <kbd class="kbd">R</kbd> is used to denote repeating interval. It is followed by the number <var class="var">n</var> to express the number of repitition. The <var class="var">start</var> time is the start of the repition. The <var class="var">duration</var> period is the duration between each repitition. For example, an event that starts on 19th May of 2025 and occur every week for 5 weeks, &lsquo;<samp class="samp">&lt;R5/2025-05-19/P1W&gt;</samp>&rsquo;. This is equivalent to &lsquo;<samp class="samp">&lt;2025-05-19&gt;</samp>&rsquo;, &lsquo;<samp class="samp">&lt;2025-05-26&gt;</samp>&rsquo;, &lsquo;<samp class="samp">&lt;2025-06-02&gt;</samp>&rsquo;, &lsquo;<samp class="samp">&lt;2025-06-09&gt;</samp>&rsquo;, and &lsquo;<samp class="samp">&lt;2025-06-16&gt;</samp>&rsquo; all together.
+</p>
+<p>The number of repitition <var class="var">n</var> can be left out or specied a value of <kbd class="kbd">-1</kbd> to express a repeating interval with indefinite number of repitition. The value <kbd class="kbd">0</kbd> will mean the interval will not repeat at all.
+</p>
+<hr>
+</div>
+</div>
 <div class="appendix-level-extent" id="GNU-Free-Documentation-License">
 <div class="nav-panel">
 <p>
-Previous: <a href="#Tag-Items" accesskey="p" rel="prev">Tag Items</a>, Up: <a href="#Top" accesskey="u" rel="up">The Tag Manual</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Previous: <a href="#Dates-and-Times" accesskey="p" rel="prev">Dates and Times</a>, Up: <a href="#Top" accesskey="u" rel="up">The Tag Manual</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <h2 class="appendix" id="GNU-Free-Documentation-License-1"><span>Appendix A GNU Free Documentation License<a class="copiable-link" href="#GNU-Free-Documentation-License-1"> &para;</a></span></h2>
 

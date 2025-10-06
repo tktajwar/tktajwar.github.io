@@ -3,7 +3,7 @@
 <!-- Created by GNU Texinfo 7.2, https://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<!-- This manual is for Tag version 0.3.
+<!-- This manual is for Tag version 0.4.
 
 Copyright © 2025 Sayed Takey Tajwar Arko.
 
@@ -19,7 +19,7 @@ Texts.  A copy of the license is included in the section entitled
 <meta name="keywords" content="Tag Manual">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
-<meta name="Generator" content="makeinfo">
+<meta name="Generator" content="texi2any">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 
 <link href="#Top" rel="start" title="Top">
@@ -103,7 +103,7 @@ Next: <a href="#Introduction" accesskey="n" rel="next">Introduction</a> &nbsp; [
 </div>
 <h1 class="top" id="The-Tag-Manual"><span>The Tag Manual<a class="copiable-link" href="#The-Tag-Manual"> &para;</a></span></h1>
 
-<p>This manual is for Tag version 0.3.
+<p>This manual is for Tag version 0.4.
 </p>
 <p>Copyright &copy; 2025 Sayed Takey Tajwar Arko.
 </p>
@@ -223,9 +223,14 @@ Next: <a href="#Valid-Tag-numbers" accesskey="n" rel="next">Valid Tag numbers</a
 @4.0
 </pre></div>
 
-<p>The tag number of an item is permanent. We need permanent identification number so we can easily reference items and not worry about it ever changing.
+<p>The tag number of an item is permanent. We need permanent
+identification number so we can easily reference items and not worry
+about it ever changing.
 </p>
-<p>Note that a tag can be any positive number that isn&rsquo;t already taken by another item. The tag for the new item could have been any number between &lsquo;<samp class="samp">1.0</samp>&rsquo; and &lsquo;<samp class="samp">2.0</samp>&rsquo; such as &lsquo;<samp class="samp">@1.01</samp>&rsquo;, &lsquo;<samp class="samp">@1.5</samp>&rsquo;, &lsquo;<samp class="samp">@1.9</samp>&rsquo;, etc. We have infinite possibilities to choose from.
+<p>Note that a tag can be any positive number that isn&rsquo;t already taken by
+another item. The tag for the new item could have been any number
+between &lsquo;<samp class="samp">1.0</samp>&rsquo; and &lsquo;<samp class="samp">2.0</samp>&rsquo; such as &lsquo;<samp class="samp">@1.01</samp>&rsquo;, &lsquo;<samp class="samp">@1.5</samp>&rsquo;,
+&lsquo;<samp class="samp">@1.9</samp>&rsquo;, etc. We have infinite possibilities to choose from.
 </p>
 <hr>
 </div>
@@ -236,13 +241,15 @@ Previous: <a href="#How-Tag-Numbering-works" accesskey="p" rel="prev">How Tag Nu
 </div>
 <h3 class="section" id="Valid-Tag-numbers-1"><span>1.3 Valid Tag numbers<a class="copiable-link" href="#Valid-Tag-numbers-1"> &para;</a></span></h3>
 
-<p>Tag numbers are positive alphanumeric floating-point numbers consisting of Latin letters and Arabic numerals that are used identifiers for tag items. Tag numbers are represented with an &lsquo;<samp class="samp">@</samp>&rsquo; followed by the number. For example, &lsquo;<samp class="samp">@1.0</samp>&rsquo;, &lsquo;<samp class="samp">@1.1</samp>&rsquo;, &lsquo;<samp class="samp">@1.19</samp>&rsquo;, &lsquo;<samp class="samp">@1.B2</samp>&rsquo;, &lsquo;<samp class="samp">@12.5</samp>&rsquo;, &lsquo;<samp class="samp">@786.25</samp>&rsquo;, &lsquo;<samp class="samp">@300000000.59</samp>&rsquo;, and &lsquo;<samp class="samp">@0.0000000001</samp>&rsquo; are all valid tag numbers. The radix-point character (<kbd class="kbd">.</kbd>) is used to separate the whole number from the fraction.
+<p>Tag numbers are positive decimal numbers used to identify tag items. Tag
+numbers are represented with an &lsquo;<samp class="samp">@</samp>&rsquo; followed by the number. For
+example, &lsquo;<samp class="samp">@1.0</samp>&rsquo;, &lsquo;<samp class="samp">@1.1</samp>&rsquo;, &lsquo;<samp class="samp">@1.19</samp>&rsquo;, &lsquo;<samp class="samp">@1.2</samp>&rsquo;,
+&lsquo;<samp class="samp">@12.5</samp>&rsquo;, &lsquo;<samp class="samp">@786.25</samp>&rsquo;, &lsquo;<samp class="samp">@300000000.0</samp>&rsquo;, and
+&lsquo;<samp class="samp">@0.0000000001</samp>&rsquo; are all valid tag numbers. The radix-point
+character (<kbd class="kbd">.</kbd>) is used to separate the whole number from the
+fraction.
 </p>
-<p>The tag number is alphanumeric which means the tag number is made out of both the numbers <kbd class="kbd">0</kbd> through <kbd class="kbd">9</kbd> and the letters <kbd class="kbd">A</kbd> through <kbd class="kbd">Z</kbd> and <kbd class="kbd">a</kbd> through <kbd class="kbd">z</kbd>. After <kbd class="kbd">9</kbd> comes <kbd class="kbd">A</kbd>. This is base 62 numeral system. This is chosen so we can express more tags with fewer digits and create more meaningful tag numbers. All the digits in base 62 numeral system in ascending order:
-</p>
-<pre class="verbatim">0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz
-</pre>
-<p>There a few rules to choosing a tag numbers:
+<p>There are a few rules to choosing tag numbers:
 </p>
 <ul class="itemize mark-bullet">
 <li>A tag number cannot contain anything other than:
@@ -250,20 +257,16 @@ Previous: <a href="#How-Tag-Numbering-works" accesskey="p" rel="prev">How Tag Nu
 <ul class="itemize mark-minus">
 <li>one <kbd class="kbd">@</kbd> in the beginning
 
-</li><li>alphanumeric characters
+</li><li>decimal digits (<kbd class="kbd">0</kbd> through <kbd class="kbd">9</kbd>)
 
-</li><li>radix point (<kbd class="kbd">.</kbd>)
+</li><li>one radix point (<kbd class="kbd">.</kbd>) character to separate the whole from the fraction
 </li></ul>
-
-</li><li>The number must be unique. No two items with the same tag number.
 
 </li><li>The number must be greater than zero. &lsquo;<samp class="samp">@0.0</samp>&rsquo; is not a valid tag number.
 
-</li><li>The number must be greater than previous item&rsquo;s and smaller than next item&rsquo;s.
+</li><li>The number must be unique. No two items with the same tag number.
 </li></ul>
 
-<p>A tag number under the hood is implemented with a string mantissa and an integer exponent. This custom data type is chosen over float/double for range and precision.
-</p>
 <hr>
 </div>
 </div>
@@ -314,10 +317,10 @@ Next: <a href="#Item-Properties" accesskey="n" rel="next">Item Properties</a>, P
 <p>Flags are words or labels used to convey the quality or features of a Tag item. They must start with the hash (<kbd class="kbd">#</kbd>) symbol followed by the name of the flag. Flags are boolean variables meaning an item either has a specific flag or it does not. They are case-sensitive and multiple of them can reside inside the same component. Flags can be used to label and categorize items:
 </p>
 <div class="example user-tag">
-<pre class="example-preformatted">@b.83 | &quot;The Raft&quot; by Stephen King   | #books #horror
-@b.98 | &quot;Red Rising&quot; by Pierce Brown | #books #dystopian
-@c.21 | Brother (1997)               | #cinema #crime #drama
-@c.a5 | Seven Samurai (1954)         | #cinema #drama
+<pre class="example-preformatted">@1.83 | &quot;The Raft&quot; by Stephen King   | #books #horror
+@1.98 | &quot;Red Rising&quot; by Pierce Brown | #books #dystopian
+@2.21 | Brother (1997)               | #cinema #crime #drama
+@2.35 | Seven Samurai (1954)         | #cinema #drama
 </pre></div>
 
 <p>Some flags have special meaning to the Tag system. For example, an item can have the <code class="code">#ARCHIVED</code> flag indicates it is now archived and will be ignored by the compiler:
@@ -329,9 +332,9 @@ Next: <a href="#Item-Properties" accesskey="n" rel="next">Item Properties</a>, P
 <p>Todo flags can be used to turn an item into a todo item. <code class="code">#TODO</code> and <code class="code">#DONE</code> are the two basic todo states but more can be used and configured. Examples of items with todo flags:
 </p>
 <div class="example user-tag">
-<pre class="example-preformatted">@td.01 | Finish Reading about Flags    | #TODO
-@td.02 | Write about Biggest Overcomes | #DONE
-@td.31 | Share Tag with others         | #TODO #IMPORTANT
+<pre class="example-preformatted">@1.01 | Finish Reading about Flags    | #TODO
+@1.02 | Write about Biggest Overcomes | #DONE
+@1.31 | Share Tag with others         | #TODO #IMPORTANT
 </pre></div>
 
 <hr>
@@ -346,19 +349,19 @@ Next: <a href="#Linking-files-to-Items" accesskey="n" rel="next">Linking files t
 <p>Items in Tag can be given named properties. Properties are key-value pairs. The key of the property need to be enclosed inside colon (<kbd class="kbd">:</kbd>) symbols and it should be followed by the value, like &lsquo;<samp class="samp">:<var class="var">key</var>: <var class="var">value</var></samp>&rsquo;. Properties can be used to denote named information regarding an item:
 </p>
 <div class="example user-tag">
-<pre class="example-preformatted">@c.35 | Scarface (1983)           | :director: Brian De Palma | :rating: 4.1
-@c.39 | 12 Angry Men (1957)       | :director: Sidney Lumet   | :rating: 4.6
-@c.42 | Memories of Murder (2003) | :director: Bong Joon Ho   | :rating: 4.4
+<pre class="example-preformatted">@1.35 | Scarface (1983)           | :director: Brian De Palma | :rating: 4.1
+@1.39 | 12 Angry Men (1957)       | :director: Sidney Lumet   | :rating: 4.6
+@1.42 | Memories of Murder (2003) | :director: Bong Joon Ho   | :rating: 4.4
 </pre></div>
 
 <p>Properties can be used to establishs connection between multiple items in a Tag document:
 </p>
 <div class="example user-tag">
-<pre class="example-preformatted">@3.24 | Life of an Octopus
-@3.9o | Living in a Garden
-@3.98 | Octupus's Garden? | :ref: @3.24 @3.9o
-@12.1 | C main function | :dep: @12.9
-@12.9 | C helper functions
+<pre class="example-preformatted">@03.24 | Life of an Octopus
+@03.9  | Living in a Garden
+@03.98 | Octupus's Garden? | :ref: @3.24 @3.9
+@12.1  | C main function | :dep: @12.9
+@12.9  | C helper functions
 </pre></div>
 
 <p>Multiple properties must not be declared in a single component. Use one component per property declaration.
